@@ -6,8 +6,10 @@ import { RoundBtn } from "../components/RoundBtn";
 export const Focus = ({ focusTitle }) => {
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 33, color: "#fff" }}>Hello: Focus !</Text>
-      <RoundBtn />
+      <Text style={{ fontSize: 33, color: "#fff" }}>
+        New Focus: {focusTitle} !
+      </Text>
+      <RoundBtn size={50} title="Set Time" />
       <StatusBar style="inverted" />
     </View>
   );

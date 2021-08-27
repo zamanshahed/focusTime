@@ -6,11 +6,22 @@ import { AddFocus } from "./src/features/AddFocus";
 
 export default function App() {
   const [focustTopic, setFocusTopic] = useState(null);
+  const FocusTopicHandler = (value) => {
+    setFocusTopic(value);
+  };
   return (
     <View style={styles.container}>
       <StatusBar style="inverted" />
-
-      {focustTopic ? <Focus /> : <AddFocus />}
+      {/* <LinearGradient
+        colors={["#4c669f", "#3b5998", "#192f6a"]}
+        style={styles.linearGradient}
+      > */}
+      {focustTopic ? (
+        <Focus focusTitle={focustTopic} />
+      ) : (
+        <AddFocus FocusTopicHandler={FocusTopicHandler} />
+      )}
+      {/* </LinearGradient> */}
     </View>
   );
 }
@@ -22,5 +33,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingTop: "21%",
+  },
+  linearGradient: {
+    flex: 1,
   },
 });

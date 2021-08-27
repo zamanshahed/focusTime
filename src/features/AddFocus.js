@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { RoundBtn } from "../components/RoundBtn";
 
-export const AddFocus = () => {
+export const AddFocus = ({ FocusTopicHandler }) => {
   const [dataRec, setDataRec] = useState(null);
 
   const inputHandler = (data) => {
@@ -32,16 +32,10 @@ export const AddFocus = () => {
           size="45"
           onPress={() => {
             console.log(dataRec);
+            FocusTopicHandler(dataRec);
           }}
         />
-        {/* <Button
-          title="Submit"
-          onPress={() => {
-            console.log(dataRec);
-          }}
-        /> */}
       </View>
-      {/* {dataRec && console.log(dataRec)} */}
     </View>
   );
 };

@@ -23,7 +23,7 @@ export const RoundBtn = ({
     >
       {title && (
         <Text
-          style={{ color: color, textAlign: "center", fontSize: size / 1.5 }}
+          style={{ color: color, textAlign: "center", fontSize: size / 3 }}
         >
           {title}
         </Text>
