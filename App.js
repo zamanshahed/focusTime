@@ -5,7 +5,7 @@ import { Focus } from "./src/features/Focus";
 import { AddFocus } from "./src/features/AddFocus";
 
 export default function App() {
-  const [focustTopic, setFocusTopic] = useState(null);
+  const [focustTopic, setFocusTopic] = useState("null");
   const FocusTopicHandler = (value) => {
     setFocusTopic(value);
   };
