@@ -4,8 +4,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 // import { RoundBtn } from "../components/RoundBtn";
 import { Timer } from "./Timer/Timer";
 import Icon from "react-native-vector-icons/Ionicons";
+import IconNow from "react-native-vector-icons/EvilIcons";
 
-export const Focus = ({ focusTitle, defaultTime = 5 }) => {
+export const Focus = ({ focusTitle, defaultTime = 5, FocusTopicHandler }) => {
   const [isStarted, setIsStarted] = useState(false);
   // const defaultTime = 10;
   // const [time, setTime] = useState(defaultTime);
@@ -21,15 +22,19 @@ export const Focus = ({ focusTitle, defaultTime = 5 }) => {
           <Text style={styles.statusBtn}>
             {!isStarted ? (
               <Icon
-                name="play-circle-outline"
-                size={100}
-                style={styles.statusBtn}
-                color="#b8e994"
+                name="play-sharp"
+                size={75}
+                style={[
+                  styles.statusBtn,
+                  styles.roundedBorder,
+                  { borderColor: "red" },
+                ]}
+                color="#18dcff"
               />
             ) : (
               <Icon
-                name="pause-circle-outline"
-                size={100}
+                name="pause-sharp"
+                size={75}
                 style={styles.statusBtn}
                 color="#e77f67"
               />
@@ -40,13 +45,33 @@ export const Focus = ({ focusTitle, defaultTime = 5 }) => {
           <Timer minutes={defaultTime} isPaused={!isStarted} />
         </View>
       </View>
-      <Text style={{ fontSize: 25, color: "#fff", paddingTop: 35 }}>
-        Keep your Focus on:{"  "}
-        <Text style={{ fontWeight: "bold", textTransform: "capitalize" }}>
-          {focusTitle}
+      <View style={{ justifyContent: "center" }}>
+        <Text
+          style={{
+            fontSize: 25,
+            color: "#fff",
+            paddingTop: 35,
+            textAlign: "center",
+          }}
+        >
+          Leave the phone, Keep your Focus on:{"  "}
+          <Text style={{ fontWeight: "bold", textTransform: "capitalize" }}>
+            {focusTitle}
+          </Text>
+          {" !"}
         </Text>
-        !
-      </Text>
+      </View>
+      <TouchableOpacity
+        style={[
+          styles.roundedBorder,
+          { borderColor: "#e77f67", marginVertical: 15 },
+        ]}
+        onPress={() => {
+          FocusTopicHandler(null);
+        }}
+      >
+        <IconNow name="close" size={45} color="#e77f67" />
+      </TouchableOpacity>
 
       <StatusBar style="inverted" />
     </View>
@@ -69,6 +94,14 @@ const styles = StyleSheet.create({
     flex: 1,
     // width: "90%",
     justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  roundedBorder: {
+    borderRadius: 99,
+    borderWidth: 2,
+    height: 56,
+    width: 56,
+    justifyContent: "center",
     alignItems: "center",
   },
 });

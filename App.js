@@ -6,7 +6,7 @@ import { AddFocus } from "./src/features/AddFocus";
 import { TimeChooser } from "./src/features/TimeChooser";
 
 export default function App() {
-  const [focustTopic, setFocusTopic] = useState("reading books");
+  const [focustTopic, setFocusTopic] = useState(null);
   const FocusTopicHandler = (value) => {
     setFocusTopic(value);
   };
@@ -18,7 +18,10 @@ export default function App() {
         style={styles.linearGradient}
       > */}
       {focustTopic ? (
-        <TimeChooser focusTitle={focustTopic} />
+        <TimeChooser
+          focusTitle={focustTopic}
+          FocusTopicHandler={FocusTopicHandler}
+        />
       ) : (
         <AddFocus FocusTopicHandler={FocusTopicHandler} />
       )}

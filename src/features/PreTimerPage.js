@@ -1,15 +1,26 @@
-import React from "react";
-import { Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { RoundBtn } from "../components/RoundBtn";
+import Icon from "react-native-vector-icons/Feather";
 
 export const PreTimerPage = ({ focusTitle, defaultTimerHandler }) => {
+  const [manualValue, setManualValue] = useState(null);
+  const ManualEntryHandler = (value) => {
+    setManualValue(value);
+  };
+
   return (
-    <View>
+    <View
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <Text
         style={{
           fontSize: 30,
           color: "#F8EFBA",
-          paddingTop: "50%",
+          paddingTop: "2%",
           textAlign: "center",
           fontWeight: "500",
           textShadowColor: "rgba(0, 0, 0, 0.95)",
@@ -30,11 +41,15 @@ export const PreTimerPage = ({ focusTitle, defaultTimerHandler }) => {
         </Text>
         {" ?"}
       </Text>
+
+      {/* 
+        Buttons starts here
+       */}
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          paddingVertical: "25%",
+          paddingVertical: "15%",
           //   alignItems: "center",
         }}
       >
@@ -68,6 +83,59 @@ export const PreTimerPage = ({ focusTitle, defaultTimerHandler }) => {
             }}
           />
         </View>
+      </View>
+      {/* 
+        Buttons ends here
+       */}
+
+      {/* 
+        Manual entry icon logic 
+    */}
+
+      <View
+        style={{
+          justifyContent: "space-between",
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: "#fff",
+            width: 300,
+
+            height: 40,
+            borderRadius: 11,
+            alignItems: "center",
+            justifyContent: "center",
+            marginRight: 13,
+          }}
+        >
+          <TextInput
+            style={{ fontSize: 20, textAlign: "center" }}
+            keyboardType="decimal-pad"
+            autoCorrect={false}
+            placeholder="Manually enter minutes"
+            onChangeText={(value) => ManualEntryHandler(value)}
+          />
+        </View>
+        <TouchableOpacity
+          style={{
+            borderRadius: 99,
+            borderWidth: 2,
+            borderColor: "#18dcff",
+            height: 66,
+            width: 66,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onPress={() => {
+            console.log("manualValue: ", manualValue);
+            defaultTimerHandler(manualValue);
+          }}
+        >
+          <Icon name="check" size={43} color="#18dcff" />
+        </TouchableOpacity>
       </View>
     </View>
   );
