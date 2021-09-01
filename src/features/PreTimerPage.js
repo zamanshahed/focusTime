@@ -6,7 +6,15 @@ import Icon from "react-native-vector-icons/Feather";
 export const PreTimerPage = ({ focusTitle, defaultTimerHandler }) => {
   const [manualValue, setManualValue] = useState(null);
   const ManualEntryHandler = (value) => {
-    setManualValue(value);
+    if (value < 60) {
+      setManualValue(value);
+    }
+    if (value < 1) {
+      setManualValue(1);
+    }
+    if (value > 59) {
+      setManualValue(59);
+    }
   };
 
   return (
@@ -55,7 +63,7 @@ export const PreTimerPage = ({ focusTitle, defaultTimerHandler }) => {
       >
         <View style={{ paddingHorizontal: 12 }}>
           <RoundBtn
-            size={105}
+            size={85}
             title="10 M"
             color="#7efff5"
             onPress={() => {
@@ -65,7 +73,7 @@ export const PreTimerPage = ({ focusTitle, defaultTimerHandler }) => {
         </View>
         <View style={{ paddingHorizontal: 12 }}>
           <RoundBtn
-            size={105}
+            size={85}
             title="15 M"
             color="#fffa65"
             onPress={() => {
@@ -75,7 +83,7 @@ export const PreTimerPage = ({ focusTitle, defaultTimerHandler }) => {
         </View>
         <View style={{ paddingHorizontal: 12 }}>
           <RoundBtn
-            size={105}
+            size={85}
             title="20 M"
             color="#ffbe76"
             onPress={() => {
@@ -101,21 +109,27 @@ export const PreTimerPage = ({ focusTitle, defaultTimerHandler }) => {
       >
         <View
           style={{
-            backgroundColor: "#fff",
+            borderColor: "#18dcff",
             width: 300,
-
-            height: 40,
+            height: 45,
             borderRadius: 11,
             alignItems: "center",
             justifyContent: "center",
             marginRight: 13,
+            paddingHorizontal: 11,
+            borderWidth: 2,
           }}
         >
           <TextInput
-            style={{ fontSize: 20, textAlign: "center" }}
+            style={{
+              fontSize: 22,
+              textAlign: "center",
+              color: "#33d9b2",
+            }}
+            placeholderTextColor="#33d9b2"
             keyboardType="decimal-pad"
             autoCorrect={false}
-            placeholder="Manually enter minutes"
+            placeholder="Manually enter (minutes)"
             onChangeText={(value) => ManualEntryHandler(value)}
           />
         </View>
@@ -124,8 +138,8 @@ export const PreTimerPage = ({ focusTitle, defaultTimerHandler }) => {
             borderRadius: 99,
             borderWidth: 2,
             borderColor: "#18dcff",
-            height: 66,
-            width: 66,
+            height: 50,
+            width: 50,
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -134,7 +148,7 @@ export const PreTimerPage = ({ focusTitle, defaultTimerHandler }) => {
             defaultTimerHandler(manualValue);
           }}
         >
-          <Icon name="check" size={43} color="#18dcff" />
+          <Icon name="check" size={35} color="#18dcff" />
         </TouchableOpacity>
       </View>
     </View>
