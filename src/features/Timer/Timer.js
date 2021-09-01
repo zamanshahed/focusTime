@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { ProgressBar } from "react-native-paper";
 
 const MinsToMillis = (mins) => {
   return mins * 60 * 1000;
@@ -9,16 +10,20 @@ const formatTime = (time) => (time < 10 ? `0${time}` : time);
 
 export const Timer = ({ minutes = 15, isPaused = true }) => {
   const [millis, setMillis] = useState(MinsToMillis(minutes));
+  const [progresNow, setProgresNow] = useState(0.9);
 
   const formatMins = Math.floor(millis / 1000 / 60) % 60;
   const formatSec = Math.floor(millis / 1000) % 60;
 
+  const finalTarget = MinsToMillis(minutes);
+
+  // const proBar = React.useRef(null);
   const interval = React.useRef(null);
 
-  //   const TargetTimeHandler = (tempTime) => {
-  //     const tempo = MinsToMillis(tempTime);
-  //     setMillis(tempo);
-  //   };
+  // const TargetTimeHandler = (tempTime) => {
+  //   const tempo = formatMins / finalTarget;
+  //   setProgresNow(tempo);
+  // };
 
   const countDown = () => {
     setMillis((time) => {
@@ -32,33 +37,52 @@ export const Timer = ({ minutes = 15, isPaused = true }) => {
       // updating after deduction and setMillis
       return timeLeft;
     });
+    const tempo = formatMins / finalTarget;
+    setProgresNow(tempo);
   };
 
   useEffect(() => {
     if (isPaused) {
+      if (interval.current) {
+        clearInterval(interval.current);
+      }
       return;
     }
+    // TargetTimeHandler();
     interval.current = setInterval(countDown, 1000);
     return () => clearInterval(interval.current);
   }, [isPaused]);
 
   return (
-    <View>
+    <View style={{ width: 365 }}>
       <Text style={styles.titleText}>
         {formatTime(formatMins)}:{formatTime(formatSec)}
       </Text>
+      <View>
+        <ProgressBar
+          progress={millis / finalTarget}
+          color={"#33d9b2"}
+          style={styles.ProgressBarStyle}
+        />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   titleText: {
-    fontSize: 90,
-    color: "#fff",
+    fontSize: 100,
+    color: "#33d9b2",
     textAlign: "center",
     fontWeight: "bold",
     textShadowColor: "rgba(0, 0, 0, 0.95)",
-    textShadowOffset: { width: -3, height: 3 },
+    textShadowOffset: { width: -5, height: 5 },
     textShadowRadius: 20,
+  },
+  ProgressBarStyle: {
+    height: 20,
+    borderRadius: 90,
+    marginVertical: 32,
+    backgroundColor: "#84817a",
   },
 });

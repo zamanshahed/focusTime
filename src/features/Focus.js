@@ -1,78 +1,53 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { RoundBtn } from "../components/RoundBtn";
+// import { RoundBtn } from "../components/RoundBtn";
 import { Timer } from "./Timer/Timer";
 import Icon from "react-native-vector-icons/Ionicons";
 
-export const Focus = ({ focusTitle }) => {
+export const Focus = ({ focusTitle, defaultTime = 5 }) => {
   const [isStarted, setIsStarted] = useState(false);
-  const defaultTime = 10;
-  const [time, setTime] = useState(defaultTime);
+  // const defaultTime = 10;
+  // const [time, setTime] = useState(defaultTime);
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => {
-          setIsStarted(!isStarted);
-        }}
-      >
-        <Text style={styles.statusBtn}>
-          {!isStarted ? (
-            <Icon
-              name="play-circle"
-              size={300}
-              style={styles.statusBtn}
-              color="rgba(60,179,113,0.5)"
-            />
-          ) : (
-            <Icon
-              name="pause-circle"
-              size={300}
-              style={styles.statusBtn}
-              color="rgba(255,5,100,0.3)"
-            />
-          )}
-        </Text>
+      <View style={styles.timerContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            setIsStarted(!isStarted);
+          }}
+        >
+          <Text style={styles.statusBtn}>
+            {!isStarted ? (
+              <Icon
+                name="play-circle-outline"
+                size={100}
+                style={styles.statusBtn}
+                color="#b8e994"
+              />
+            ) : (
+              <Icon
+                name="pause-circle-outline"
+                size={100}
+                style={styles.statusBtn}
+                color="#e77f67"
+              />
+            )}
+          </Text>
+        </TouchableOpacity>
         <View style={styles.timerStyle}>
-          <Timer minutes={time} isPaused={!isStarted} />
+          <Timer minutes={defaultTime} isPaused={!isStarted} />
         </View>
-      </TouchableOpacity>
-      <Text style={{ fontSize: 25, color: "#fff", paddingTop: 120 }}>
-        Keep your Focus on:
+      </View>
+      <Text style={{ fontSize: 25, color: "#fff", paddingTop: 35 }}>
+        Keep your Focus on:{"  "}
         <Text style={{ fontWeight: "bold", textTransform: "capitalize" }}>
           {focusTitle}
         </Text>
         !
       </Text>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-around",
-          paddingVertical: 31,
-        }}
-      >
-        <RoundBtn
-          size={70}
-          title="10 M"
-          onPress={() => {
-            setTime(10);
-          }}
-        />
-        <RoundBtn
-          size={70}
-          title="15 M"
-          onPress={() => {
-            setTime(15);
-          }}
-        />
-        <RoundBtn
-          size={70}
-          title="20 M"
-          onPress={() => {
-            setTime(20);
-          }}
-        />
-      </View>
+
       <StatusBar style="inverted" />
     </View>
   );
@@ -80,13 +55,20 @@ export const Focus = ({ focusTitle }) => {
 
 const styles = StyleSheet.create({
   timerStyle: {
-    paddingTop: "33%",
+    paddingTop: "2%",
   },
   statusBtn: {
-    position: "absolute",
     justifyContent: "center",
-    fontWeight: "bold",
     textAlign: "center",
     paddingLeft: 10,
+  },
+  timerContainer: {
+    flexDirection: "column-reverse",
+  },
+  container: {
+    flex: 1,
+    // width: "90%",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
 });

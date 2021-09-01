@@ -31,7 +31,7 @@ export const AddFocus = ({ FocusTopicHandler }) => {
           title="+"
           size="45"
           onPress={() => {
-            console.log(dataRec);
+            // console.log(dataRec);
             FocusTopicHandler(dataRec);
           }}
         />

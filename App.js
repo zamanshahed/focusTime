@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Focus } from "./src/features/Focus";
 import { AddFocus } from "./src/features/AddFocus";
+import { TimeChooser } from "./src/features/TimeChooser";
 
 export default function App() {
-  const [focustTopic, setFocusTopic] = useState("null");
+  const [focustTopic, setFocusTopic] = useState("reading books");
   const FocusTopicHandler = (value) => {
     setFocusTopic(value);
   };
@@ -17,7 +18,7 @@ export default function App() {
         style={styles.linearGradient}
       > */}
       {focustTopic ? (
-        <Focus focusTitle={focustTopic} />
+        <TimeChooser focusTitle={focustTopic} />
       ) : (
         <AddFocus FocusTopicHandler={FocusTopicHandler} />
       )}
@@ -29,7 +30,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#222f3e",
+    backgroundColor: "#3c6382",
     alignItems: "center",
     justifyContent: "space-between",
     paddingTop: "21%",
