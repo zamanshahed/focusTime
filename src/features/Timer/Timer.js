@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Vibration, Platform } from "react-native";
 import { ProgressBar } from "react-native-paper";
 
 const MinsToMillis = (mins) => {
@@ -17,18 +17,28 @@ export const Timer = ({ minutes = 15, isPaused = true }) => {
 
   const finalTarget = MinsToMillis(minutes);
 
-  // const proBar = React.useRef(null);
   const interval = React.useRef(null);
 
-  // const TargetTimeHandler = (tempTime) => {
-  //   const tempo = formatMins / finalTarget;
-  //   setProgresNow(tempo);
-  // };
+  const Vibrate = () => {
+    if (Platform.OS === "ios") {
+      const interval = setInterval(() => (Vibration.vibrate(), 1000));
+      setTimeout(() => clearInterval(interval), 2000);
+    } else {
+      Vibration.vibrate(2 * 1000);
+    }
+  };
+
+  const onEnd = () => {
+    console.log("onEnd triggered!");
+    Vibrate();
+  };
 
   const countDown = () => {
     setMillis((time) => {
       if (time === 0) {
         // finished counting !
+        clearInterval(interval.current);
+        onEnd();
         return time;
       }
       // decrements by 1 sec!
@@ -47,6 +57,10 @@ export const Timer = ({ minutes = 15, isPaused = true }) => {
         clearInterval(interval.current);
       }
       return;
+    }
+
+    if (millis === 0) {
+      isPaused = false;
     }
     // TargetTimeHandler();
     interval.current = setInterval(countDown, 1000);

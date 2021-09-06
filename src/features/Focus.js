@@ -1,16 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-// import { RoundBtn } from "../components/RoundBtn";
+
 import { Timer } from "./Timer/Timer";
 import Icon from "react-native-vector-icons/Ionicons";
 import IconNow from "react-native-vector-icons/EvilIcons";
 
+import { useKeepAwake } from "expo-keep-awake";
+
 export const Focus = ({ focusTitle, defaultTime = 5, FocusTopicHandler }) => {
   const [isStarted, setIsStarted] = useState(false);
-  // const defaultTime = 10;
-  // const [time, setTime] = useState(defaultTime);
 
+  useKeepAwake();
   return (
     <View style={styles.container}>
       <View style={styles.timerContainer}>
@@ -45,22 +46,49 @@ export const Focus = ({ focusTitle, defaultTime = 5, FocusTopicHandler }) => {
           <Timer minutes={defaultTime} isPaused={!isStarted} />
         </View>
       </View>
-      <View style={{ justifyContent: "center" }}>
-        <Text
-          style={{
-            fontSize: 25,
-            color: "#fff",
-            paddingTop: 35,
-            textAlign: "center",
-          }}
-        >
-          Leave the phone, Keep your Focus on:{"  "}
-          <Text style={{ fontWeight: "bold", textTransform: "capitalize" }}>
-            {focusTitle}
+
+      {/* 
+        UI Message
+      */}
+
+      {!isStarted && (
+        <View style={{ justifyContent: "center" }}>
+          <Text
+            style={{
+              fontSize: 25,
+              color: "#fff",
+              paddingTop: 35,
+              textAlign: "center",
+            }}
+          >
+            Let's start{" "}
+            <Text style={{ fontWeight: "bold", textTransform: "capitalize" }}>
+              {focusTitle}
+            </Text>
+            {" !"}
           </Text>
-          {" !"}
-        </Text>
-      </View>
+        </View>
+      )}
+
+      {isStarted && (
+        <View style={{ justifyContent: "center" }}>
+          <Text
+            style={{
+              fontSize: 25,
+              color: "#fff",
+              paddingTop: 35,
+              textAlign: "center",
+            }}
+          >
+            Leave the phone, Keep your Focus on:{" "}
+            <Text style={{ fontWeight: "bold", textTransform: "capitalize" }}>
+              {focusTitle}
+            </Text>
+            {" !"}
+          </Text>
+        </View>
+      )}
+
       <TouchableOpacity
         style={[
           styles.roundedBorder,

@@ -43,7 +43,7 @@ export const AddFocus = ({ FocusTopicHandler }) => {
         }}
       >
         <TextInput
-          autoCapitalize
+          // autoCapitalize
           autoCorrect
           style={styles.TextInputStyle}
           onChangeText={(value) => {

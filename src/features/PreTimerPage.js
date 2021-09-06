@@ -9,7 +9,7 @@ export const PreTimerPage = ({ focusTitle, defaultTimerHandler }) => {
     if (value < 60) {
       setManualValue(value);
     }
-    if (value < 1) {
+    if (value <= 0) {
       setManualValue(1);
     }
     if (value > 59) {
@@ -84,10 +84,10 @@ export const PreTimerPage = ({ focusTitle, defaultTimerHandler }) => {
         <View style={{ paddingHorizontal: 12 }}>
           <RoundBtn
             size={85}
-            title="20 M"
+            title="30 M"
             color="#ffbe76"
             onPress={() => {
-              defaultTimerHandler(20);
+              defaultTimerHandler(30);
             }}
           />
         </View>
