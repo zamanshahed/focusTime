@@ -44,6 +44,7 @@ export const Focus = ({ focusTitle, defaultTime = 5, FocusTopicHandler }) => {
         </TouchableOpacity>
         <View style={styles.timerStyle}>
           <Timer
+            focusTitle={focusTitle}
             FocusTopicHandler={FocusTopicHandler}
             minutes={defaultTime}
             isPaused={!isStarted}
@@ -99,7 +100,7 @@ export const Focus = ({ focusTitle, defaultTime = 5, FocusTopicHandler }) => {
           { borderColor: "#e77f67", marginVertical: 15 },
         ]}
         onPress={() => {
-          FocusTopicHandler(null);
+          FocusTopicHandler(false);
         }}
       >
         <IconNow name="close" size={45} color="#e77f67" />

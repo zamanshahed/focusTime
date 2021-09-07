@@ -1,22 +1,38 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import { Focus } from "./src/features/Focus";
+// import { Focus } from "./src/features/Focus";
 import { AddFocus } from "./src/features/AddFocus";
 import { TimeChooser } from "./src/features/TimeChooser";
 
 export default function App() {
   const [focustTopic, setFocusTopic] = useState(null);
+  const [focusHistory, setFocusHistory] = useState([]);
+  const [stateManager, setStateManager] = useState(null);
+
+  useEffect(() => {
+    if (stateManager !== null) {
+      setFocusHistory([...focusHistory, { focustTopic, stateManager }]);
+    }
+  }, [stateManager]);
+
   const FocusTopicHandler = (value) => {
-    setFocusTopic(value);
+    if (value === 0) {
+      setStateManager(true);
+    } else if (value === false) {
+      setStateManager(false);
+    } else {
+      setFocusTopic(value);
+    }
   };
+
+  console.log("focusHistory: ", focusHistory);
+  console.log("focustTopic: ", focustTopic);
+
   return (
     <View style={styles.container}>
       <StatusBar style="inverted" />
-      {/* <LinearGradient
-        colors={["#4c669f", "#3b5998", "#192f6a"]}
-        style={styles.linearGradient}
-      > */}
+
       {focustTopic ? (
         <TimeChooser
           focusTitle={focustTopic}

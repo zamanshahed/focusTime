@@ -50,14 +50,7 @@ export const AddFocus = ({ FocusTopicHandler }) => {
             inputHandler(value);
           }}
         />
-        {/* <RoundBtn
-          title="+"
-          size="45"
-          onPress={() => {
-            // console.log(dataRec);
-            FocusTopicHandler(dataRec);
-          }}
-        /> */}
+
         <TouchableOpacity
           style={[styles.roundedBorder, { borderColor: "#18dcff" }]}
           onPress={() => {
