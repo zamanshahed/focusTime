@@ -43,7 +43,11 @@ export const Focus = ({ focusTitle, defaultTime = 5, FocusTopicHandler }) => {
           </Text>
         </TouchableOpacity>
         <View style={styles.timerStyle}>
-          <Timer minutes={defaultTime} isPaused={!isStarted} />
+          <Timer
+            FocusTopicHandler={FocusTopicHandler}
+            minutes={defaultTime}
+            isPaused={!isStarted}
+          />
         </View>
       </View>
 
