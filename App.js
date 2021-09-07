@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
-// import { Focus } from "./src/features/Focus";
+import { FocusHistory } from "./src/features/FocusHistory";
 import { AddFocus } from "./src/features/AddFocus";
 import { TimeChooser } from "./src/features/TimeChooser";
 
@@ -42,7 +42,15 @@ export default function App() {
           }}
         />
       ) : (
-        <AddFocus FocusTopicHandler={FocusTopicHandler} />
+        <>
+          <AddFocus FocusTopicHandler={FocusTopicHandler} />
+          <FocusHistory
+            focusHistory={focusHistory}
+            onClear={() => {
+              setFocusHistory([]);
+            }}
+          />
+        </>
       )}
       {/* </LinearGradient> */}
     </View>
