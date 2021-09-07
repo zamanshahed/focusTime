@@ -8,22 +8,14 @@ import { TimeChooser } from "./src/features/TimeChooser";
 export default function App() {
   const [focustTopic, setFocusTopic] = useState(null);
   const [focusHistory, setFocusHistory] = useState([]);
-  const [stateManager, setStateManager] = useState(null);
+  // const [stateManager, setStateManager] = useState(null);
 
-  useEffect(() => {
-    if (stateManager !== null) {
-      setFocusHistory([...focusHistory, { focustTopic, stateManager }]);
-    }
-  }, [stateManager]);
+  const FocusHistoryHandler = (topic, status) => {
+    setFocusHistory([...focusHistory, { topic, status }]);
+  };
 
   const FocusTopicHandler = (value) => {
-    if (value === 0) {
-      setStateManager(true);
-    } else if (value === false) {
-      setStateManager(false);
-    } else {
-      setFocusTopic(value);
-    }
+    setFocusTopic(value);
   };
 
   console.log("focusHistory: ", focusHistory);
@@ -34,9 +26,20 @@ export default function App() {
       <StatusBar style="inverted" />
 
       {focustTopic ? (
+        //Timerchooser > Focus/PreTimerPage
         <TimeChooser
           focusTitle={focustTopic}
           FocusTopicHandler={FocusTopicHandler}
+          OnFocusEnd={() => {
+            FocusHistoryHandler(focustTopic, 1);
+            console.log("FINISHED FOCUSING!!");
+            setFocusTopic(false);
+          }}
+          OnStopTimer={() => {
+            FocusHistoryHandler(focustTopic, 0);
+            console.log("MANUALLY STOPPED!!");
+            setFocusTopic(0);
+          }}
         />
       ) : (
         <AddFocus FocusTopicHandler={FocusTopicHandler} />

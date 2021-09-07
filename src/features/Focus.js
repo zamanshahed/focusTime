@@ -8,8 +8,17 @@ import IconNow from "react-native-vector-icons/EvilIcons";
 
 import { useKeepAwake } from "expo-keep-awake";
 
-export const Focus = ({ focusTitle, defaultTime = 5, FocusTopicHandler }) => {
+export const Focus = ({
+  focusTitle,
+  defaultTime = 5,
+  OnStopTimer,
+  OnFocusEnd,
+}) => {
   const [isStarted, setIsStarted] = useState(false);
+
+  const StopFocusHandler = () => {
+    OnStopTimer();
+  };
 
   useKeepAwake();
   return (
@@ -45,7 +54,7 @@ export const Focus = ({ focusTitle, defaultTime = 5, FocusTopicHandler }) => {
         <View style={styles.timerStyle}>
           <Timer
             focusTitle={focusTitle}
-            FocusTopicHandler={FocusTopicHandler}
+            OnFocusEnd={OnFocusEnd}
             minutes={defaultTime}
             isPaused={!isStarted}
           />
@@ -100,7 +109,7 @@ export const Focus = ({ focusTitle, defaultTime = 5, FocusTopicHandler }) => {
           { borderColor: "#e77f67", marginVertical: 15 },
         ]}
         onPress={() => {
-          FocusTopicHandler(false);
+          StopFocusHandler();
         }}
       >
         <IconNow name="close" size={45} color="#e77f67" />

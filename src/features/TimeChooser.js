@@ -4,7 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { PreTimerPage } from "./PreTimerPage";
 import { Focus } from "./Focus";
 
-export const TimeChooser = ({ focusTitle, FocusTopicHandler }) => {
+export const TimeChooser = ({ focusTitle, OnFocusEnd, OnStopTimer }) => {
   // const [isStarted, setIsStarted] = useState(false);
   const defaultTime = 0;
   const [finalTime, setFinalTime] = useState(defaultTime);
@@ -20,7 +20,8 @@ export const TimeChooser = ({ focusTitle, FocusTopicHandler }) => {
         <Focus
           focusTitle={focusTitle}
           defaultTime={finalTime}
-          FocusTopicHandler={FocusTopicHandler}
+          OnFocusEnd={OnFocusEnd}
+          OnStopTimer={OnStopTimer}
         />
       ) : (
         <PreTimerPage

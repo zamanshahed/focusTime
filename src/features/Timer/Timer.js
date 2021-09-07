@@ -8,12 +8,7 @@ const MinsToMillis = (mins) => {
 
 const formatTime = (time) => (time < 10 ? `0${time}` : time);
 
-export const Timer = ({
-  minutes = 15,
-  isPaused = true,
-  FocusTopicHandler,
-  focusTitle,
-}) => {
+export const Timer = ({ minutes = 15, isPaused = true, OnFocusEnd }) => {
   const [millis, setMillis] = useState(MinsToMillis(minutes));
   const [progresNow, setProgresNow] = useState(0.9);
 
@@ -36,7 +31,7 @@ export const Timer = ({
   const onEnd = () => {
     console.log("onEnd triggered!");
     Vibrate();
-    FocusTopicHandler(0);
+    OnFocusEnd();
   };
 
   const countDown = () => {
