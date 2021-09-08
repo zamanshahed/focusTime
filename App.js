@@ -47,12 +47,16 @@ export default function App() {
       ) : (
         <>
           <AddFocus FocusTopicHandler={FocusTopicHandler} />
-          <FocusHistory
-            focusHistory={focusHistory}
-            onClear={() => {
-              setFocusHistory([]);
-            }}
-          />
+          {focusHistory.length ? (
+            <FocusHistory
+              focusHistory={focusHistory}
+              onClear={() => {
+                setFocusHistory([]);
+              }}
+            />
+          ) : (
+            <></>
+          )}
         </>
       )}
       {/* </LinearGradient> */}

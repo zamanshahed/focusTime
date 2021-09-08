@@ -6,7 +6,7 @@ const HistoryItems = ({ item, index }) => {
   if (item.status === 1) {
     color = "#18dcff";
   } else if (item.status === 0) {
-    color = "red";
+    color = "#e17055";
   } else {
     color = "#fff";
   }

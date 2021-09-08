@@ -28,8 +28,8 @@ export const AddFocus = ({ FocusTopicHandler }) => {
           textShadowRadius: 20,
         }}
       >
-        <Text style={{ color: "#ffb8b8" }}>Focus</Text>
-        <Text style={{ color: "#7efff5" }}>Time!</Text>
+        <Text style={{ color: "#34e7e4" }}>Focus</Text>
+        <Text style={{ color: "#ffeaa7" }}>Time!</Text>
       </Text>
       <Text style={{ fontSize: 25, color: "#32ff7e", textAlign: "center" }}>
         What would you like to focus on ?
@@ -76,10 +76,10 @@ const styles = StyleSheet.create({
     height: 45,
     borderRadius: 5,
     width: "75%",
-    fontSize: 25,
+    fontSize: 18,
     paddingHorizontal: 7,
     textAlign: "center",
-    color: "#26de81",
+    color: "#fff",
     borderColor: "#18dcff",
   },
   roundedBorder: {
