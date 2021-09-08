@@ -10,7 +10,7 @@ const formatTime = (time) => (time < 10 ? `0${time}` : time);
 
 export const Timer = ({ minutes = 15, isPaused = true, OnFocusEnd }) => {
   const [millis, setMillis] = useState(MinsToMillis(minutes));
-  const [progresNow, setProgresNow] = useState(0.9);
+  const [timerState, setTimerState] = useState(true);
 
   const formatMins = Math.floor(millis / 1000 / 60) % 60;
   const formatSec = Math.floor(millis / 1000) % 60;
@@ -27,11 +27,16 @@ export const Timer = ({ minutes = 15, isPaused = true, OnFocusEnd }) => {
       Vibration.vibrate(2 * 1000);
     }
   };
+  useEffect(() => {
+    if (!timerState) {
+      onEnd();
+    }
+  }, [timerState]);
 
   const onEnd = () => {
+    OnFocusEnd();
     console.log("onEnd triggered!");
     Vibrate();
-    OnFocusEnd();
   };
 
   const countDown = () => {
@@ -39,7 +44,7 @@ export const Timer = ({ minutes = 15, isPaused = true, OnFocusEnd }) => {
       if (time === 0) {
         // finished counting !
         clearInterval(interval.current);
-        onEnd();
+        setTimerState(false);
         return time;
       }
       // decrements by 1 sec!
@@ -48,8 +53,8 @@ export const Timer = ({ minutes = 15, isPaused = true, OnFocusEnd }) => {
       // updating after deduction and setMillis
       return timeLeft;
     });
-    const tempo = formatMins / finalTarget;
-    setProgresNow(tempo);
+    // const tempo = formatMins / finalTarget;
+    // setProgresNow(tempo);
   };
 
   useEffect(() => {
