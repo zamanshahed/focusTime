@@ -1,5 +1,6 @@
 import React from "react";
 import { FlatList, SafeAreaView, Text, View } from "react-native";
+import { RoundBtn } from "../components/RoundBtn";
 
 const HistoryItems = ({ item, index }) => {
   let color = "";
@@ -35,6 +36,9 @@ export const FocusHistory = ({ focusHistory, onClear }) => {
           renderItem={HistoryItems}
         />
       </SafeAreaView>
+      <View style={{ paddingBottom: 15 }}>
+        <RoundBtn title="Clear" size={65} onPress={onClear} />
+      </View>
     </>
   );
 };
