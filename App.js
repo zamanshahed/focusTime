@@ -11,13 +11,16 @@ export default function App() {
   // const [stateManager, setStateManager] = useState(null);
 
   const FocusHistoryHandler = (topic, status) => {
-    setFocusHistory([...focusHistory, { topic, status }]);
+    setFocusHistory([
+      ...focusHistory,
+      { topic, status, key: JSON.stringify(Math.random()) },
+    ]);
   };
 
   const FocusTopicHandler = (value) => {
     setFocusTopic(value);
   };
-
+  console.log("Random key: ", JSON.stringify(Math.random()));
   console.log("focusHistory: ", focusHistory);
   console.log("focustTopic: ", focustTopic);
 

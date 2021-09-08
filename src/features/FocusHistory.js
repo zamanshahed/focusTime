@@ -3,10 +3,12 @@ import { FlatList, SafeAreaView, Text, View } from "react-native";
 
 const HistoryItems = ({ item, index }) => {
   let color = "";
-  if (item.status) {
-    color = "green";
-  } else {
+  if (item.status === 1) {
+    color = "#18dcff";
+  } else if (item.status === 0) {
     color = "red";
+  } else {
+    color = "#fff";
   }
   return (
     <Text style={{ textTransform: "capitalize", fontSize: 20, color: color }}>
@@ -22,7 +24,9 @@ export const FocusHistory = ({ focusHistory, onClear }) => {
   return (
     <>
       <SafeAreaView style={{ flex: 1 }}>
-        <Text>Previously Focused on:</Text>
+        <Text style={{ color: "#fff", fontSize: 22 }}>
+          Previously Focused on:
+        </Text>
 
         <FlatList
           style={{ flex: 1 }}

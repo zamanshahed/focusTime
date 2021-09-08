@@ -22,7 +22,7 @@ export const AddFocus = ({ FocusTopicHandler }) => {
           fontSize: 20,
           textAlign: "center",
           fontSize: 66,
-          paddingBottom: "20%",
+          paddingBottom: "5%",
           textShadowColor: "rgba(0, 0, 0, 0.95)",
           textShadowOffset: { width: -5, height: 5 },
           textShadowRadius: 20,
