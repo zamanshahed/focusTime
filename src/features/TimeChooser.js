@@ -12,7 +12,7 @@ export const TimeChooser = ({ focusTitle, OnFocusEnd, OnStopTimer }) => {
   const defaultTimerHandler = (time) => {
     setFinalTime(time);
   };
-  console.log("defaultTimerHandler received: ", finalTime);
+  // console.log("defaultTimerHandler received: ", finalTime);
 
   return (
     <View style={styles.container}>

@@ -29,7 +29,7 @@ export default function App() {
       await AsyncStorage.setItem("focusHistory", jsonValue);
       // await AsyncStorage.setItem("focusHistory", JSON.stringify(focusHistory));
     } catch (error) {
-      console.log("error on SaveFocusHistory: ", error);
+      // console.log("error on SaveFocusHistory: ", error);
     }
   };
 
@@ -38,7 +38,7 @@ export default function App() {
       await AsyncStorage.removeItem("focusHistory");
       // await AsyncStorage.setItem("focusHistory", JSON.stringify(focusHistory));
     } catch (error) {
-      console.log("error on ClearFocusHistory: ", error);
+      // console.log("error on ClearFocusHistory: ", error);
     }
   };
 
@@ -51,7 +51,7 @@ export default function App() {
         setFocusHistory(JSON.parse(history));
       }
     } catch (error) {
-      console.log("error on Load FocusHistory: ", error);
+      // console.log("error on Load FocusHistory: ", error);
     }
   };
 
@@ -70,9 +70,9 @@ export default function App() {
     }
   }, [focusHistory]);
 
-  console.log("Random key: ", JSON.stringify(Math.random()));
-  console.log("focusHistory: ", focusHistory);
-  console.log("focusHistory length: ", focusHistory.length);
+  // console.log("Random key: ", JSON.stringify(Math.random()));
+  // console.log("focusHistory: ", focusHistory);
+  // console.log("focusHistory length: ", focusHistory.length);
 
   return (
     <View style={styles.container}>
@@ -85,12 +85,12 @@ export default function App() {
           FocusTopicHandler={FocusTopicHandler}
           OnFocusEnd={() => {
             FocusHistoryHandler(focustTopic, 1);
-            console.log("FINISHED FOCUSING!!");
+            // console.log("FINISHED FOCUSING!!");
             setFocusTopic(false);
           }}
           OnStopTimer={() => {
             FocusHistoryHandler(focustTopic, 0);
-            console.log("MANUALLY STOPPED!!");
+            // console.log("MANUALLY STOPPED!!");
             setFocusTopic(0);
           }}
         />
