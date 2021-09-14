@@ -1,32 +1,31 @@
 {
   "expo": {
-    "name": "focusTime",
+    "name": "Focus Time",
+    "description": "Time to focus on one specific task or event that you care !",
     "slug": "focusTime",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/timer.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/FocusTime.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#3c6382"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/timer.png",
+        "backgroundColor": "#3c6382"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/timer.png"
     }
   }
 }

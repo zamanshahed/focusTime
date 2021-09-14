@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#3c6382",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: "21%",
+    paddingTop: "11%",
   },
   linearGradient: {
     flex: 1,

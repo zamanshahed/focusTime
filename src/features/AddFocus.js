@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 import { RoundBtn } from "../components/RoundBtn";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -17,6 +18,12 @@ export const AddFocus = ({ FocusTopicHandler }) => {
   };
   return (
     <View>
+      <View style={styles.imageContainer}>
+        <Image
+          style={styles.imageStyle}
+          source={require("../../assets/timer.png")}
+        />
+      </View>
       <Text
         style={{
           fontSize: 20,
@@ -89,5 +96,15 @@ const styles = StyleSheet.create({
     width: 50,
     justifyContent: "center",
     alignItems: "center",
+  },
+  imageStyle: {
+    width: 80,
+    height: 80,
+  },
+  imageContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 5,
+    paddingTop: -40,
   },
 });
